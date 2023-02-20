@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function displayBooks(id, title, author) {
     const items = document.createElement('li');
-    list.style.listStyleType = 'none'
+    list.style.listStyleType = 'none';
     items.innerHTML = `
       <p>Title:-  ${title}</p>
        <p> Author:-  ${author}</p>
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     removeBtn.id = id;
     const bookLine = document.createElement('hr');
     items.append(removeBtn, bookLine);
-  
+
     // REMOVE BOOKS
     removeBtn.addEventListener('click', () => {
       books = books.filter((book) => {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     list.appendChild(items);
   }
 
-    //ADD BOOKS
+  // ADD BOOKS
   function addBook(title, author) {
     const id = Date.now();
     const bookList = {
@@ -39,14 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
       title,
       author,
     };
-  
-    if (title === '' || author === '') {
-      errorMessage('Please provide complete information');
-    } else {
-      books.push(bookList);
-      localStorage.setItem('books', JSON.stringify(books));
-      displayBooks(bookList.id, bookList.title, bookList.author);
-    }
+
+    books.push(bookList);
+    localStorage.setItem('books', JSON.stringify(books));
+    displayBooks(bookList.id, bookList.title, bookList.author);
   }
 
   const myBook = JSON.parse(localStorage.getItem('books'));
@@ -67,5 +63,4 @@ document.addEventListener('DOMContentLoaded', () => {
     title.value = '';
     author.value = '';
   });
-
 });
