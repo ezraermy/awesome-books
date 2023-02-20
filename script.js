@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = document.createElement('li');
     list.style.listStyleType = 'none'
     items.innerHTML = `
-      <p>Title:- ${title}</p>
-       <p> Author:- ${author}</p>
+      <p>Title:-  ${title}</p>
+       <p> Author:-  ${author}</p>
        `;
     const removeBtn = document.createElement('button');
     removeBtn.textContent = 'Remove';
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   
     if (title === '' || author === '') {
-      errorMessage('Kindly fill all inputs');
+      errorMessage('Please provide complete information');
     } else {
       books.push(bookList);
       localStorage.setItem('books', JSON.stringify(books));
