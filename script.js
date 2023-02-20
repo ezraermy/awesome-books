@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let books = [];
 
+  // REMOVE BOOKS
+  function removeBook(id) {
+    books = books.filter((book) => {
+      if (book.id === id) {
+        return false;
+      }
+      return true;
+    });
+  }
+
   function displayBooks(id, title, author) {
     const items = document.createElement('li');
     list.style.listStyleType = 'none';
@@ -17,14 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookLine = document.createElement('hr');
     items.append(removeBtn, bookLine);
 
-    // REMOVE BOOKS
     removeBtn.addEventListener('click', () => {
-      books = books.filter((book) => {
-        if (book.id === id) {
-          return false;
-        }
-        return true;
-      });
+      removeBook(id);
       localStorage.setItem('books', JSON.stringify(books));
       items.remove();
     });
