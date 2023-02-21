@@ -1,3 +1,46 @@
 html {
   margin: 0;
 }
+
+table {
+  margin: auto;
+  border: 2px black solid;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+td, th {
+  border: none;
+  text-align: left;
+  padding: 8px 40px;
+  margin-right: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+.add-new-book,
+.book-list-title {
+  text-align: center;
+}
+
+.btn {
+  border: 2px black solid;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  background: #fff;
+  padding: 4px;
+}
+
+#book-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputs {
+  margin: 8px;
+}
