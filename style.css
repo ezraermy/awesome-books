@@ -10,7 +10,8 @@ table {
   width: 80%;
 }
 
-td, th {
+td,
+th {
   border: none;
   text-align: left;
   padding: 8px 40px;
