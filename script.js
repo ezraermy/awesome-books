@@ -1,70 +1,106 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const bookForm = document.getElementById('add-book');
-  const list = document.querySelector('.book-list');
+// Book Class
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
 
-  let books = [];
+// Store Class: Handles Storage
+class Store {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
 
-  // REMOVE BOOKS
-  function removeBook(id) {
-    books = books.filter((book) => {
-      if (book.id === id) {
-        return false;
-      }
-      return true;
-    });
+    return books;
   }
 
-  function displayBooks(id, title, author) {
-    const items = document.createElement('li');
-    list.style.listStyleType = 'none';
-    items.innerHTML = `
-      <p>Title:-  ${title}</p>
-       <p> Author:-  ${author}</p>
-       `;
-    const removeBtn = document.createElement('button');
-    removeBtn.textContent = 'Remove';
-    removeBtn.id = id;
-    const bookLine = document.createElement('hr');
-    items.append(removeBtn, bookLine);
-
-    removeBtn.addEventListener('click', () => {
-      removeBook(id);
-      localStorage.setItem('books', JSON.stringify(books));
-      items.remove();
-    });
-    list.appendChild(items);
-  }
-
-  // ADD BOOKS
-  function addBook(title, author) {
-    const id = Date.now();
-    const bookList = {
-      id,
-      title,
-      author,
-    };
-
-    books.push(bookList);
+  static addBook(book) {
+    const books = Store.getBooks();
+    books.push(book);
     localStorage.setItem('books', JSON.stringify(books));
-    displayBooks(bookList.id, bookList.title, bookList.author);
   }
 
-  const myBook = JSON.parse(localStorage.getItem('books'));
-  if (myBook) {
-    books = myBook;
+  static removeBook(author) {
+    const books = Store.getBooks();
+    books.forEach((book, index) => {
+      if (book.author === author) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
   }
-  books.forEach((book) => {
-    displayBooks(book.id, book.title, book.author);
-  });
+}
 
-  bookForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const title = document.getElementById('title');
-    const author = document.getElementById('author');
-    addBook(title.value, author.value);
+// bookList Class
+class bookList {
+  static displayBooks() {
+    const books = Store.getBooks();
 
-    // clear input
-    title.value = '';
-    author.value = '';
-  });
+    books.forEach((book) => bookList.addBookToList(book));
+  }
+
+  static addBookToList(book) {
+    const list = document.querySelector('#book-list');
+
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td>${book.title}</td>
+      <td>${book.author}</td>
+      <td><a href="#" class="btn delete">remove</a></td>
+    `;
+
+    list.appendChild(row);
+  }
+
+  static deleteBook(el) {
+    if (el.classList.contains('delete')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+  }
+}
+
+// Event: Display Books
+document.addEventListener('DOMContentLoaded', bookList.displayBooks);
+
+// Event: Add a Book
+document.querySelector('#book-form').addEventListener('submit', (e) => {
+  // Prevent actual submit
+  e.preventDefault();
+
+  // Get form values
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+
+  // Instatiate book
+  const book = new Book(title, author);
+
+  // Add Book to bookList
+  bookList.addBookToList(book);
+
+  // Add book to store
+  Store.addBook(book);
+
+  // Clear fields
+  bookList.clearFields();
+});
+
+// Event: Remove a Book
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  // Remove book from bookList
+  bookList.deleteBook(e.target);
+
+  // Remove book from store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 });
