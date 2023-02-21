@@ -33,6 +33,7 @@ tr:nth-child(even) {
   font-weight: 700;
   background: #fff;
   padding: 4px;
+  margin-top: 4px;
 }
 
 #book-form {
