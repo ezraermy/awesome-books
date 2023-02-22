@@ -10,12 +10,12 @@ table {
   width: 80%;
 }
 
-td,
-th {
-  border: none;
-  text-align: left;
-  padding: 8px 40px;
-  margin-right: 20px;
+td {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 30px;
 }
 
 tr:nth-child(even) {
@@ -34,7 +34,6 @@ tr:nth-child(even) {
   font-weight: 700;
   background: #fff;
   padding: 4px;
-  margin-top: 4px;
 }
 
 #book-form {
@@ -43,6 +42,14 @@ tr:nth-child(even) {
   align-items: center;
 }
 
-.inputs {
-  margin: 8px;
+span {
+  padding: 0 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
 }

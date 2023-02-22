@@ -1,95 +1,63 @@
-/* eslint max-classes-per-file: ["error", 3] */
-// Book Class
-class Book {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
+import Book from './index.js';
+
+const bookList = document.getElementById('book-list');
+const formBook = document.getElementById('book-form');
+const bookTitle = document.getElementById('title');
+const bookAuthor = document.getElementById('author');
+
+const displayBook = (list) => {
+  const data = list.map(
+    (book) => `
+        <tr class="d-flex w-100 justify-content-between">
+            <td>
+            <span><span class="bold">${book.title}</span> by <span class="italic">${book.author}</span>
+            </span> <button id="${book.id}" onclick="col.removeElement(this)" class="btn">Remove</button></td> 
+        </tr>`,
+  );
+  bookList.innerHTML = data.join('');
+};
+
+export default class Pack {
+  constructor() {
+    this.list = [];
+  }
+
+  /* Add Book */
+  addBook = () => {
+    const id = Math.floor(Math.random() * 10000);
+    const newBook = new Book(id, bookTitle.value, bookAuthor.value);
+    this.list.push(newBook);
+    Pack.addStorage(this.list);
+    displayBook(this.list);
+  }
+
+  /* Remove Storage */
+  removeElement = (element) => {
+    this.list = this.list.filter((i) => Number(i.id) !== Number(element.id));
+    Pack.addStorage(this.list);
+    displayBook(this.list);
+  }
+
+  /* Add Storage */
+  static addStorage = (list) => {
+    localStorage.setItem('newBook', JSON.stringify(list));
   }
 }
 
-// Store Class: Handles Storage
-class Store {
-  static getBooks() {
-    let books;
-    if (localStorage.getItem('books') === null) {
-      books = [];
-    } else {
-      books = JSON.parse(localStorage.getItem('books'));
-    }
+const col = new Pack();
+window.col = col;
 
-    return books;
-  }
-
-  static addBook(book) {
-    const books = Store.getBooks();
-    books.push(book);
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-
-  static removeBook(author) {
-    const books = Store.getBooks();
-    books.forEach((book, index) => {
-      if (book.author === author) {
-        books.splice(index, 1);
-      }
-    });
-
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-}
-
-// bookList Class
-class bookList {
-  static displayBooks() {
-    const books = Store.getBooks();
-
-    books.forEach((book) => bookList.addBookToList(book));
-  }
-
-  static addBookToList(book) {
-    const list = document.querySelector('#book-list');
-
-    const row = document.createElement('tr');
-
-    row.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td><a href="#" class="btn delete">remove</a></td>
-    `;
-
-    list.appendChild(row);
-  }
-
-  static deleteBook(el) {
-    if (el.classList.contains('delete')) {
-      el.parentElement.parentElement.remove();
-    }
-  }
-
-  static clearFields() {
-    document.querySelector('#title').value = '';
-    document.querySelector('#author').value = '';
-  }
-}
-
-// Event: Display Books
-document.addEventListener('DOMContentLoaded', bookList.displayBooks);
-
-// Event: Add a Book
-document.querySelector('#book-form').addEventListener('submit', (e) => {
+formBook.addEventListener('submit', (e) => {
   e.preventDefault();
-  const title = document.querySelector('#title').value;
-  const author = document.querySelector('#author').value;
-
-  const book = new Book(title, author);
-
-  bookList.addBookToList(book);
-  Store.addBook(book);
-  bookList.clearFields();
+  col.addBook();
+  bookTitle.value = '';
+  bookAuthor.value = '';
 });
 
-// Event: Remove a Book
-document.querySelector('#book-list').addEventListener('click', (e) => {
-  bookList.deleteBook(e.target);
-  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('newBook')) {
+    displayBook(JSON.parse(localStorage.newBook));
+  }
 });
+
+export { displayBook };
