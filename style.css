@@ -26,7 +26,6 @@ td {
   margin: auto;
 }
 
-
 .add-new-book,
 .book-list-title {
   text-align: center;
@@ -40,7 +39,6 @@ td {
   font-size: 12px;
 }
 
-
 .btn {
   border: 2px black solid;
   text-decoration: none;
@@ -48,7 +46,6 @@ td {
   font-weight: 700;
   background: #fff;
   padding: 4px;
-  border: 1px solid black;
 }
 
 #book-form {
@@ -81,21 +78,16 @@ td {
 
 .navbar {
   box-shadow: 0 10px 13px -7px #000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  width: 100%
+  width: 100%;
 }
 
 .navbar-brand {
   margin-left: 15px;
 }
 
-.btn {
-  border: 1px solid black;
-}
-
 .btn:hover {
   border: 2px solid #2e2e2e;
 }
-
 
 .nav-link:hover {
   color: blue;
@@ -109,6 +101,11 @@ td {
   color: #2e2e2e;
 }
 
+.nav-item {
+  list-style: none;
+  padding: 0 10px;
+}
+
 .nav-item:nth-child(2),
 .nav-item:nth-child(3) {
   border-left: 1.5px solid black;
@@ -118,11 +115,6 @@ ul {
   display: flex;
   flex-direction: row;
   margin-right: 10px;
-}
-
-.nav-item {
-  list-style: none;
-  padding: 0 10px;
 }
 
 li {
@@ -136,5 +128,3 @@ footer {
   width: 100%;
   margin: 20px 0;
 }
-
-

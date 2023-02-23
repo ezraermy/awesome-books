@@ -61,4 +61,3 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 export { displayBook };
-
