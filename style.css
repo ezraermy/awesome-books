@@ -1,5 +1,10 @@
-html {
-  margin: 0;
+body {
+  background: #f5f5f5;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
 }
 
 table {
@@ -10,21 +15,28 @@ table {
   width: 80%;
 }
 
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
 td {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 30px;
-}
-
-tr:nth-child(even) {
-  background-color: #ddd;
+  gap: 20rem;
+  margin: auto;
 }
 
 .add-new-book,
 .book-list-title {
   text-align: center;
+}
+
+.date {
+  top: 90px;
+  right: 40px;
+  z-index: 4;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .btn {
@@ -42,8 +54,16 @@ tr:nth-child(even) {
   align-items: center;
 }
 
-span {
-  padding: 0 10px;
+.book-list {
+  border: 2px solid black;
+  width: 100%;
+  background-color: #f5f5f5;
+  opacity: 0.8;
+  margin-top: 60px;
+}
+
+.add-book-form {
+  margin-top: 20px;
 }
 
 .bold {
@@ -52,4 +72,59 @@ span {
 
 .italic {
   font-style: italic;
+}
+
+/* Navigation bar  */
+
+.navbar {
+  box-shadow: 0 10px 13px -7px #000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  width: 100%;
+}
+
+.navbar-brand {
+  margin-left: 15px;
+}
+
+.btn:hover {
+  border: 2px solid #2e2e2e;
+}
+
+.nav-link:hover {
+  color: blue;
+}
+
+.active {
+  color: blue;
+}
+
+.desactive {
+  color: #2e2e2e;
+}
+
+.nav-item {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.nav-item:nth-child(2),
+.nav-item:nth-child(3) {
+  border-left: 1.5px solid black;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+}
+
+li {
+  list-style: none;
+  margin: auto;
+}
+
+footer {
+  background: #f5f5f5;
+  border: 2px black solid;
+  width: 100%;
+  margin: 20px 0;
 }
