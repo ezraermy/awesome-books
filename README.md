@@ -57,8 +57,6 @@
 
 <!-- LIVE DEMO -->
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -151,7 +149,9 @@ If you like this project...
 
 <!-- ACKNOWLEDGEMENTS -->
 
-## 🙏 Acknowledgments <a name="acknowledgements">I would like to thank  Microverse for this opportunity to learn and W3Schools for the information shared in their site.</a>
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to thank  Microverse for this opportunity to learn and W3Schools for the information shared in their site.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
