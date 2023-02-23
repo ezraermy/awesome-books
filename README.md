@@ -151,13 +151,11 @@ If you like this project...
 
 <!-- ACKNOWLEDGEMENTS -->
 
-## 🙏 Acknowledgments <a name="acknowledgements"></a>
+## 🙏 Acknowledgments <a name="acknowledgements">I would like to thank  Microverse for this opportunity to learn and W3Schools for the information shared in their site.</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FAQ (optional) -->
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 
